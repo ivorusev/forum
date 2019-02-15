@@ -1,0 +1,7 @@
+com\mse\demo\controllers\ForumDTO$ForumDTOBuilder.class
+com\mse\demo\controllers\TestController.class
+com\mse\demo\DemoApplication.class
+com\mse\demo\controllers\ForumEntity.class
+com\mse\demo\controllers\TestMapper.class
+com\mse\demo\controllers\TestMapperImpl.class
+com\mse\demo\controllers\ForumDTO.class
