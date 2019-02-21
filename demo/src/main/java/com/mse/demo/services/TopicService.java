@@ -1,0 +1,13 @@
+package com.mse.demo.services;
+
+import java.util.List;
+
+import com.mse.demo.dto.TopicDTO;
+
+public interface TopicService {
+
+	boolean saveTopic(TopicDTO topic);
+
+	List<TopicDTO> findAll();
+
+}
