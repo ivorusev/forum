@@ -28,13 +28,13 @@ public class ReplyServiceImpl implements ReplyService {
 	public void saveReply(ReplyDTO reply) {
 		Optional<TopicEntity> findById = topicRepository.findById(reply.getTopicId());
 		if (!findById.isPresent()) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Trying to add a reply for non-existing topic!");
 		}
 		TopicEntity topicEntity = findById.get();
 		ReplyEntity entity = mapper.toEntity(reply);
 		entity.setTopic(topicEntity);
 		replyRepository.saveAndFlush(entity);
-		topicRepository.save(topicEntity);
+		// topicRepository.saveAndFlush(topicEntity);
 	}
 
 }

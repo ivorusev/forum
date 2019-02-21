@@ -15,10 +15,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@Entity(name = "topics")
 public class TopicEntity {
 
 	@Id
@@ -34,7 +34,7 @@ public class TopicEntity {
 
 	private long views;
 
-	@OneToMany(fetch = FetchType.EAGER)
-	private List<ReplyEntity> topics;
+	@OneToMany(mappedBy = "topic", fetch = FetchType.LAZY)
+	private List<ReplyEntity> replies;
 
 }

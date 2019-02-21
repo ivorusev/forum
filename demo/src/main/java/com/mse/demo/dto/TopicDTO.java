@@ -3,8 +3,6 @@ package com.mse.demo.dto;
 import java.util.Date;
 import java.util.List;
 
-import com.mse.demo.persistence.entities.ReplyEntity;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +20,6 @@ public class TopicDTO {
 
 	private Date date;
 
-	private List<ReplyEntity> topics;
+	private List<ReplyDTO> topicReplies;
 
 }

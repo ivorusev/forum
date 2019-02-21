@@ -8,9 +8,9 @@ import javax.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
 @Getter
 @Setter
+@Entity(name = "likes")
 public class LikesEntity {
 
 	@Id
