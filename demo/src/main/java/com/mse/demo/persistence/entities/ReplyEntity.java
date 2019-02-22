@@ -2,6 +2,7 @@ package com.mse.demo.persistence.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,4 +34,9 @@ public class ReplyEntity {
 	@ManyToOne
 	@JoinColumn(name = "topic_id")
 	private TopicEntity topic;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
+	private UserEntity user;
+
 }

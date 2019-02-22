@@ -15,4 +15,6 @@ public class ReplyDTO {
 
 	private String text;
 
+	private Long userId;
+
 }

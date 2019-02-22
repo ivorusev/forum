@@ -1,7 +1,5 @@
 package com.mse.demo.dto;
 
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,14 +9,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TopicDTO {
+public class UserDTO {
 
-	private Long id;
+	private String username;
 
-	private String title;
+	private String password;
 
-	private String text;
-
-	private Date date;
+	private String email;
 
 }
