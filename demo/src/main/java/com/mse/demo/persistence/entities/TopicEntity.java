@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,9 +27,8 @@ public class TopicEntity {
 	@Column(unique = true)
 	private Long id;
 
+	@Column(unique = true)
 	private String title;
-
-	private String text;
 
 	private Date postedOn;
 
@@ -36,5 +36,10 @@ public class TopicEntity {
 
 	@OneToMany(mappedBy = "topic", fetch = FetchType.LAZY)
 	private List<ReplyEntity> replies;
+
+	@PrePersist
+	public void onPrePersist() {
+		postedOn = new Date();
+	}
 
 }

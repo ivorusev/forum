@@ -2,6 +2,7 @@ package com.mse.demo.controllers;
 
 import java.util.List;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,7 @@ public class TopicController {
 		return "OK!";
 	}
 
+	@Secured({ "USER" })
 	@RequestMapping(method = RequestMethod.GET)
 	public List<TopicDTO> getAll() {
 		return topicService.findAll();
