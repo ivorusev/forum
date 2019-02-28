@@ -1,6 +1,8 @@
 package com.mse.demo;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.apache.commons.codec.binary.Base64;
@@ -28,23 +30,26 @@ public class ForumApplicationTests {
 
 	@Test
 	public void contextLoads() throws Exception {
-		// TODO:
-		// String accessToken = obtainAccessToken("dummyUser", "dummyPassword");
+		String accessToken = obtainAccessToken2("user", "pass");
+		mockMvc.perform(get("/topics").header("Authorization", "Bearer " + accessToken)
+				.accept("application/json;charset=UTF-8"))
+				.andExpect(status().isOk())
+				.andExpect(content().contentType("application/json;charset=UTF-8"))
+				.andExpect(content().string("[]"));
 	}
 
-	private String obtainAccessToken(String username, String password) throws Exception {
+	private String obtainAccessToken2(String username, String password) throws Exception {
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 		params.add("grant_type", "password");
 		params.add("username", username);
 		params.add("password", password);
-		// params.add("scope", "openid");
 
 		String base64ClientCredentials = new String(Base64.encodeBase64("admin:secret".getBytes()));
-
-		ResultActions result = mockMvc.perform(post("http://localhost:8090/oauth/token").params(params)
+		ResultActions result = mockMvc.perform(post("/oauth/token").params(params)
 				.header("Authorization", "Basic " + base64ClientCredentials)
 				.accept("application/json;charset=UTF-8"))
-				.andExpect(status().isOk());
+				.andExpect(status().isOk())
+				.andExpect(content().contentType("application/json;charset=UTF-8"));
 
 		String resultString = result.andReturn()
 				.getResponse()
