@@ -32,10 +32,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 				.map(roles -> new SimpleGrantedAuthority(roles.getRoleName()))
 				.collect(Collectors.toList());
 
+		String[] roles = { "ADMIN" };
+
 		return org.springframework.security.core.userdetails.User.builder()
 				.username(user.getUsername())
 				.password(passwordEncoder().encode(user.getPassword()))
-				.authorities(collect)
+				.authorities(roles)
+				.roles(roles)
 				.build();
 	}
 

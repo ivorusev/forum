@@ -2,7 +2,8 @@ package com.mse.demo.controllers;
 
 import java.util.List;
 
-import org.springframework.security.access.annotation.Secured;
+import javax.annotation.security.RolesAllowed;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,13 +23,15 @@ public class TopicController {
 
 	private TopicService topicService;
 
+	@RolesAllowed("USER")
 	@RequestMapping(method = RequestMethod.POST)
 	public String createTopic(@RequestBody TopicDTO topic) {
 		topicService.saveTopic(topic);
 		return "OK!";
 	}
 
-	@Secured({ "USER" })
+	// TODO: remove hardcoded values and use custom annotation instead.
+	@RolesAllowed("ADMIN")
 	@RequestMapping(method = RequestMethod.GET)
 	public List<TopicDTO> getAll() {
 		return topicService.findAll();
